@@ -13,8 +13,6 @@ export default (app:any) => {
         new ShippingRoutes(app)
 
 
-        //app.use('/teste', (req,res) =>{ res.send("Ok")})
-
         app.use((req, res) => {
             res.status(404).json({errorCode: 404, msg: 'Pagina não encontrada!'});
         });

@@ -11,9 +11,9 @@ export default class ShippingRouter {
 
     ShippingRouter(){
 
-        this._app.use('/teste', basicAuth,(req,res) =>{ res.send("Ok")})
+        //this._app.use('/teste', basicAuth,(req,res) =>{ res.send("Ok")})
 
-        this._app.use('/frete-jamef/cotacao',basicAuth).post(Test)
+        this._app.post('/frete',basicAuth, Test)
 
     }
 } 

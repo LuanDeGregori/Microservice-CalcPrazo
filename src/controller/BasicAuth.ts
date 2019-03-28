@@ -22,7 +22,6 @@ module.exports = async (req, res, next) => {
     const credentials = Buffer.from(base64Credentials, 'base64').toString('ascii');
     const [username, password] = credentials.split(':');
     const user = await _authenticate({ username, password });
-    console.log('user ' + user)
     if (!user) {
         return res.status(401).json({ message: 'Invalid Authentication Credentials' });
     }

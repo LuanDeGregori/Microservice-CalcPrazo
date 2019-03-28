@@ -1,8 +1,15 @@
 import {Request, Response} from "express";
 const axios = require('axios');
 const env = require('../config/env_vars')
+import {ShippingServices} from '../services/ShippingServices'
 
 export async function Test(request: Request, response: Response) {
+
+    var erro = new ShippingServices().valida(request);
+
+    if (erro){
+        response.status(400).json(erro)
+    }
 
     var items = request.body.request.order.items
     var peso = 0;
@@ -37,9 +44,9 @@ export async function Test(request: Request, response: Response) {
 
     var url = env.url
     url += client.tip + client.cnpj + client.mun + client.est + client.seg
-    url += peso + "/"             //peso total
+    url += peso + "/"             
     url += value + ".00/"         
-    url += metro3 + "/"              //metros cubicos
+    url += metro3 + "/"              
     url += cep + "/"         
     url += client.fil            
     url += data + "/"         
@@ -55,5 +62,5 @@ export async function Test(request: Request, response: Response) {
             console.log(error)
         })
 
-    response.send(res)
+    response.status(200).send(res)
 }

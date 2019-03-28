@@ -4,6 +4,10 @@ const bcrypt = require('bcrypt')
 async function _authenticate({ username, password }) {
     const user = await FindUser(username)
 
+    if(!user){
+        return false
+    }
+
     if (await bcrypt.compare(password, user.password)){
         return true
     }

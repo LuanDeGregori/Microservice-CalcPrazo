@@ -11,9 +11,7 @@ export default class ShippingRouter {
 
     ShippingRouter(){
 
-        //this._app.use('/teste', basicAuth,(req,res) =>{ res.send("Ok")})
-
         this._app.get('/frete-jamef/cotacao',basicAuth, Test)
 
     }
-} 
+}

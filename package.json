@@ -1,0 +1,40 @@
+{
+  "name": "microservice-shipping-jameff",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "tsc -w",
+    "server": "nodemon build/index.js",
+    "start": "concurrently \"npm run watch\" \"npm run server\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuanDeGregori/MicroserviceShippingJameff.git"
+  },
+  "author": "Luan de Gregori",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LuanDeGregori/MicroserviceShippingJameff/issues"
+  },
+  "homepage": "https://github.com/LuanDeGregori/MicroserviceShippingJameff#readme",
+  "devDependencies": {
+    "@types/body-parser": "^1.16.8",
+    "@types/express": "^4.11.1",
+    "@types/node": "^9.6.5",
+    "typescript": "^2.8.1"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "concurrently": "^4.1.0",
+    "express": "^4.16.3",
+    "express-validator": "^5.3.1",
+    "jsonwebtoken": "^7.4.0",
+    "mysql": "^2.15.0",
+    "nodemon": "^1.18.10",
+    "swagger-ui-express": "^4.0.2",
+    "systemjs": "^0.19.31",
+    "typeorm": "^0.2.15"
+  }
+}

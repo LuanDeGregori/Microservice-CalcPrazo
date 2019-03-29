@@ -11,3 +11,11 @@ export const client = {
     fil: "07/",
     user: "jameff"
 }
+
+export const config_winston = {
+    host     : 'localhost',
+    user     : 'root',
+    password : '',
+    database : 'desafio3',
+    table    : 'logs'
+  }

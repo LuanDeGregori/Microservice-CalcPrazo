@@ -1,19 +1,7 @@
 var winston = require('winston');
-var fs = require('fs');
 var winston_mysql = require('winston-mysql');
+var options_default = require('../config/env_vars').config_winston;
 
-if(!fs.existsSync('logs')){
-  fs.mkdirSync('logs');
-}
-
-var options_default = {
-  host     : 'localhost',
-  user     : 'root',
-  password : '',
-  database : 'desafio3',
-  table    : 'logs',
-  fields   : { level: 'level', message: 'message', timestamp: 'timestamp'}
-};
 
 module.exports = new winston.createLogger({
   transports: [

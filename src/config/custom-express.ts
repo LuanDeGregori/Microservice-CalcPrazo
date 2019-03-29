@@ -5,7 +5,7 @@ import * as expressValidator from 'express-validator'
 import * as swaggerUi from 'swagger-ui-express'
 var morgan = require('morgan');
 var logger = require('../services/logger.js');
-//const swaggerDocument = require('../../documentation/swagger.json')
+const swaggerDocument = require('../../documentation/swagger.json')
 
 const app = express();
 
@@ -20,7 +20,7 @@ app.use(morgan("common", {
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 app.use(expressValidator())
-//app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 routes(app)
 

@@ -4,7 +4,7 @@
     "port": 3306,
     "username": "root",
     "password": "",
-    "database": "desafio3",
+    "database": "desafio4",
     "synchronize": true,
     "entities": [
       "build/entity/*.js"

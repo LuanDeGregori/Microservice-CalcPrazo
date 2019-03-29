@@ -3,6 +3,7 @@ import * as bodyParser from 'body-parser'
 import routes from '../routes/routes'
 import * as expressValidator from 'express-validator'
 import * as swaggerUi from 'swagger-ui-express'
+var expressLayouts = require('express-ejs-layouts')
 var morgan = require('morgan');
 var logger = require('../services/logger.js');
 const swaggerDocument = require('../../documentation/swagger.json')
@@ -16,6 +17,9 @@ app.use(morgan("common", {
       }
     }
   }));
+
+  app.set('view engine', 'ejs')    
+  app.use(expressLayouts) 
 
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())

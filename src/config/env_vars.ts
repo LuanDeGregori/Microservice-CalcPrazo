@@ -16,6 +16,6 @@ export const config_winston = {
     host     : 'localhost',
     user     : 'root',
     password : '',
-    database : 'desafio3',
+    database : 'desafio4',
     table    : 'logs'
   }

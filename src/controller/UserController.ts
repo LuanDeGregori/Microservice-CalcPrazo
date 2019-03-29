@@ -2,8 +2,8 @@ import {Request, Response} from "express";
 import {getManager} from "typeorm";
 import { User } from '../entity/User'
 const bcrypt = require('bcrypt')
-import { Erro } from '../models/Errors'
-var err = new Erro();
+import { Error } from '../models/Errors'
+var err = new Error();
 var logger = require('../services/logger.js');
 
 export async function SaveUser(request: Request, response: Response) {

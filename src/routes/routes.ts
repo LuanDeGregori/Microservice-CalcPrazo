@@ -1,7 +1,7 @@
 import { createConnection } from 'typeorm'
 import UserRoutes from './UserRoutes'
 import ShippingRoutes from './ShippingRoutes'
-import { Erro } from '../models/Errors'
+import { Error } from '../models/Errors'
 
 
 export default (app:any) => {
@@ -14,7 +14,7 @@ export default (app:any) => {
 
 
         app.use((req, res) => {
-            res.status(404).json(new Erro().err404());
+            res.status(404).json(new Error().err404());
         });
 })
 }

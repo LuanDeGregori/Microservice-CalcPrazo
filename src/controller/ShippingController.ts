@@ -2,7 +2,7 @@ import {Request, Response} from "express";
 const axios = require('axios');
 const env = require('../config/env_vars')
 import {ShippingServices} from '../services/ShippingServices'
-import { Erro } from '../models/Errors'
+import { Error } from '../models/Errors'
 var logger = require('../services/logger.js');
 
 export async function Test(request: Request, response: Response) {
@@ -12,9 +12,9 @@ export async function Test(request: Request, response: Response) {
     
     
     if (erro){
-        return response.status(400).json(new Erro().list(erro))
+        return response.status(400).json(new Error().list(erro))
     }
-    
+
     logger.info("Calculating price and time");
 
     var items = request.body.request.order.items
@@ -50,13 +50,7 @@ export async function Test(request: Request, response: Response) {
 
     var url = env.url
     url += client.tip + client.cnpj + client.mun + client.est + client.seg
-    url += peso + "/"             
-    url += value + ".00/"         
-    url += metro3 + "/"              
-    url += cep + "/"         
-    url += client.fil            
-    url += data + "/"         
-    url += client.user           
+    url += peso + "/" + value + ".00/" + metro3 + "/" + cep + "/" + client.fil + data + "/" + client.user           
 
     //console.log(url)
 
@@ -67,6 +61,6 @@ export async function Test(request: Request, response: Response) {
         .catch(error => {
             console.log(error)
         })
-
-    response.status(200).send(res)
+    var a = [{"shippingTotal" : res.valor,"estimatedDeliveryDate": res.previsao_entrega}]
+    response.status(200).send(a)
 }

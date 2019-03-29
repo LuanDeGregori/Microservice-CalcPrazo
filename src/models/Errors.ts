@@ -1,4 +1,4 @@
-export class Erro{ 
+export class Error{ 
 
     private _respostaPadrao  = []
 

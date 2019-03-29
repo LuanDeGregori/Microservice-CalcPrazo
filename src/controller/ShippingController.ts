@@ -2,13 +2,15 @@ import {Request, Response} from "express";
 const axios = require('axios');
 const env = require('../config/env_vars')
 import {ShippingServices} from '../services/ShippingServices'
+import { Erro } from '../models/Errors'
 
 export async function Test(request: Request, response: Response) {
 
     var erro = new ShippingServices().valida(request);
 
+
     if (erro){
-        response.status(400).json(erro)
+        return response.status(400).json(new Erro().list(erro))
     }
 
     var items = request.body.request.order.items

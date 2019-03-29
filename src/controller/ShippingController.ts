@@ -3,15 +3,19 @@ const axios = require('axios');
 const env = require('../config/env_vars')
 import {ShippingServices} from '../services/ShippingServices'
 import { Erro } from '../models/Errors'
+var logger = require('../services/logger.js');
 
 export async function Test(request: Request, response: Response) {
 
+    
     var erro = new ShippingServices().valida(request);
-
-
+    
+    
     if (erro){
         return response.status(400).json(new Erro().list(erro))
     }
+    
+    logger.info("Calculating price and time");
 
     var items = request.body.request.order.items
     var peso = 0;

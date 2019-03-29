@@ -1,7 +1,7 @@
 import { FindUser } from './UserController'
 const bcrypt = require('bcrypt')
 import { Erro } from '../models/Errors'
-
+var logger = require('../services/logger.js');
 
 async function _authenticate({ username, password }) {
     const user = await FindUser(username)
@@ -29,6 +29,7 @@ module.exports = async (req, res, next) => {
     const [username, password] = credentials.split(':');
     const user = await _authenticate({ username, password });
     if (!user) {
+        logger.info("Invalid Authentication for " + username);
         return res.status(401).json(new Erro().model(401,'Invalid Authentication Credentials'));
     }
 

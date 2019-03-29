@@ -9,8 +9,6 @@ export async function Test(request: Request, response: Response) {
 
     
     var erro = new ShippingServices().valida(request);
-    
-    
     if (erro){
         return response.status(400).json(new Error().list(erro))
     }
@@ -46,7 +44,7 @@ export async function Test(request: Request, response: Response) {
     var value = request.body.request.order.orderTotal
     var cep = request.body.request.address.postalCode
     
-    var client = env.client;
+    const client = env.client;
 
     var url = env.url
     url += client.tip + client.cnpj + client.mun + client.est + client.seg

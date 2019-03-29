@@ -1,0 +1,197 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Esta API faz a consulta do prazo e preço de um frete pela Transportadora Jamef.",
+    "version": "2.0.0",
+    "title": "Microservice Shipping Jamef",
+    "contact": {
+      "name": "Luan de Gregori",
+      "email": "luan.gregori@compasso.com.br"
+    }
+  },
+  "host": "localhost:3001",
+  "basePath": "/api-docs",
+  "tags": [
+    {
+      "name": "Usuário",
+      "description": "Rota para usuários."
+    },
+    {
+      "name": "Cotação",
+      "description": "Rota para calcular prazo e preço."
+    }
+  ],
+  "paths": {
+    "/user": {
+      "post": {
+        "tags": [
+          "Usuário"
+        ],
+        "summary": "Cadastra um novo usuário",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "username",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "password",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/Usuario"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/frete-jamef/cotacao": {
+      "get": {
+        "tags": [
+          "Cotação"
+        ],
+        "summary": "Calcula o prazo e o preço",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "postalCode",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "totalPrice",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "items",
+            "schema": {
+              "$ref": "#/definitions/Item"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Cotacao"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Cotacao": {
+      "type": "object",
+      "properties": {
+        "valor": {
+          "type": "integer",
+          "format": "int64",
+          "example": 11364
+        },
+        "previsao_entrega": {
+          "type": "string",
+          "example": "04/04/2019"
+        }
+      }
+    },
+    "Usuario": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "example": 1
+        },
+        "username": {
+          "type": "string",
+          "example": "luan.gregori@compasso.com.br"
+        },
+        "password": {
+          "type": "string",
+          "example": "$2b$10$1dcAVpCpbnMIepErnnxhPe8bmlESDLmOvDJEVND5rjjV3zSszWAWi"
+        }
+      }
+    },
+    "Produto": {
+      "type": "object",
+      "properties": {
+        "length": {
+          "type": "string",
+          "example": 20
+        },
+        "width": {
+          "type": "string",
+          "example": 20
+        },
+        "weight": {
+          "type": "string",
+          "example": 20
+        },
+        "height": {
+          "type": "string",
+          "example": 30
+        }
+      }
+    },
+    "Item": {
+      "type": "object",
+      "properties": {
+        "product": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Produto"
+          }
+        },
+        "quantity": {
+          "type": "string",
+          "example": 2
+        }
+      }
+    }
+  }
+}

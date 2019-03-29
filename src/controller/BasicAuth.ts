@@ -1,6 +1,6 @@
 import { FindUser } from './UserController'
 const bcrypt = require('bcrypt')
-import { Erro } from '../models/Errors'
+import { Error } from '../models/Errors'
 var logger = require('../services/logger.js');
 
 async function _authenticate({ username, password }) {
@@ -20,7 +20,7 @@ module.exports = async (req, res, next) => {
 
     // check for basic auth header
     if (!req.headers.authorization || req.headers.authorization.indexOf('Basic ') === -1) {
-        return res.status(401).json(new Erro().model(401,'Missing Authorization Header'));
+        return res.status(401).json(new Error().model(401,'Missing Authorization Header'));
     }
 
     // verify auth credentials
@@ -30,7 +30,7 @@ module.exports = async (req, res, next) => {
     const user = await _authenticate({ username, password });
     if (!user) {
         logger.info("Invalid Authentication for " + username);
-        return res.status(401).json(new Erro().model(401,'Invalid Authentication Credentials'));
+        return res.status(401).json(new Error().model(401,'Invalid Authentication Credentials'));
     }
 
     next();

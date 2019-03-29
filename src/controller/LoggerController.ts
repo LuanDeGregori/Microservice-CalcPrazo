@@ -1,6 +1,7 @@
 import {Request, Response} from "express";
 import {getManager} from "typeorm";
 import { Logs } from '../entity/Logs'
+import { Error } from '../models/Errors'
 
 
 export async function Render(request: Request, response: Response) {
@@ -9,5 +10,5 @@ export async function Render(request: Request, response: Response) {
 
     var logs = await logsRepository.find()
 
-    response.send(logs)
+    response.render('\layout', { logs: logs })
 }

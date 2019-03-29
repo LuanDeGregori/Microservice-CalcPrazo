@@ -5,8 +5,33 @@
   <title>Logs</title>
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="/css/styles.css">
+  <style>
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        align-items: center
+      }
+      
+      td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+      
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+      </style>
 </head>
 <body>
+    <header>
+        <nav class="navbar navbar-inverse">
+         <ul class="nav navbar-nav">
+           <li><a>Home</a></li>
+         </ul>
+        </nav>
+     </header> 
 
   <h1><%logs%></h1>
   <table style="width:50%">
@@ -15,17 +40,16 @@
       <th>Level</th> 
       <th>Message</th>
     </tr>
-
-    
   <% for (log of logs){%>
     <tr>
-        <td><%= logs.id %></td>
-        <td><%= logs.level %></td> 
-        <td><%= logs.message %></td>
+        <td><%= log.id %></td>
+        <td><%= log.level %></td> 
+        <td><%= log.message %></td>
       </tr>
   <% } %>
   </table>
-
-
 </body>
+<footer>
+    @Logs 
+  </footer>
 </html>  

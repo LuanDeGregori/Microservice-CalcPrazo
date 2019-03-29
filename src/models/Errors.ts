@@ -11,7 +11,6 @@ export class Erro{
  
 
     model(code: number = 404, mensagem:string = "Error Not Implemented"){
-   
         this._respostaPadrao = [{"code" : code,"msg": mensagem}]
         return this._respostaPadrao
     }
